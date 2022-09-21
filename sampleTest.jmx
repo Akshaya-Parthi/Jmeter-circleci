@@ -104,7 +104,7 @@
           <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://www.google.com.uy/" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="http://3.85.192.44:31845/" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -147,7 +147,7 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="https://www.google.com.uy/search?q=Abstracta&amp;source=hp&amp;ei=E4-8YYezAfbF5OUP0f2JoAQ&amp;iflsig=ALs-wAMAAAAAYbydIw9iT2Ns7jWIgZ4X-PX9DRRInkAy&amp;ved=0ahUKEwjHiJDx9ur0AhX2IrkGHdF-AkQQ4dUDCAc&amp;uact=5&amp;oq=Abstracta&amp;gs_lcp=Cgdnd3Mtd2l6EAMyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEOg4ILhCABBCxAxDHARCjAjoOCC4QgAQQsQMQxwEQ0QM6BQguEIAEOggIABCxAxCDAToICAAQgAQQsQM6CwgAEIAEELEDEIMBOgsILhCABBDHARDRAzoLCC4QsQMQxwEQrwE6CAguEIAEELEDOg4ILhCABBCxAxDHARCvAToECAAQAzoNCAAQgAQQsQMQRhD5AVAAWJ0VYP0daABwAHgAgAFuiAHsBpIBAzYuM5gBAKABAQ&amp;sclient=gws-wiz" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="http://3.85.192.44:31845/" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="q" elementType="HTTPArgument">
