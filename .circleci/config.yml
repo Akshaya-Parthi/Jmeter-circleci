@@ -9,10 +9,10 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: anjanar17/jmeter
+      - image: akshayaclops/jmeter:latest
         auth:
-          username: anjanaradhakrish@gmail.com  # can specify string literal values
-          password: Docker@123
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
