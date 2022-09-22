@@ -30,10 +30,9 @@ workflows:
   circleci-jmeter-workflow:
     jobs:
       - circleci-jmeter
-
- orbs:
+orbs:
   slack: circleci/slack@4.4.4
- jobs:
+jobs:
   example-job:
     docker:
       # replace with your preferred image
