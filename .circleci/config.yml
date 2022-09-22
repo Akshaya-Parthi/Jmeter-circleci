@@ -25,3 +25,8 @@ jobs:
           command: "jmeter -n -t sampleTest.jmx -l results/runResults.csv -e -o results"
       - store_artifacts:
           path: results
+        
+workflows:
+  circleci-jmeter-workflow:
+    jobs:
+      - circleci-jmeter
