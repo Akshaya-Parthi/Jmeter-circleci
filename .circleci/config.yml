@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  circleci-jmeter:
+  - circleci-jmeter:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -25,9 +25,26 @@ jobs:
           command: "jmeter -n -t sampleTest.jmx -l results/runResults.csv -e -o results"
       - store_artifacts:
           path: results
-        
+ 
+  - slack-notification:
+    orbs:
+      slack: circleci/slack@4.3.0
+
+    commands:
+      notify_slack_error:
+        steps:
+          - slack/notify:
+              event: fail
+              template: basic_fail_1
+
+    notify_slack_pass:
+      steps:
+        - slack/notify:
+            event: pass
+            template: basic_success_1
 workflows:
   circleci-jmeter-workflow:
     jobs:
       - circleci-jmeter
+      - slack-notification
 
