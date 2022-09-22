@@ -1,33 +1,33 @@
 version: 2.1
-jobs:        
-  - notify:
-      docker:
-      - image: 'cimg/base:stable'
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+jobs:
+  - circleci-jmeter:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: akshayaclops/jmeter:latest
         auth:
           username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD  # context / project UI env-var reference
+          password: $DOCKER_PASSWORD
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*BUILD SUCCESS*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always
+      - checkout
+      - run:
+          name: Make Results Directory
+          command: mkdir results
+      - run:
+          name: "Run tests"
+          command: "jmeter -n -t sampleTest.jmx -l results/runResults.csv -e -o results"
+      - store_artifacts:
+          path: results
+
 workflows:
   circleci-jmeter_and_notify-workflow:
     jobs:
-      - notify
+      - circleci-jmeter
  
 
 
