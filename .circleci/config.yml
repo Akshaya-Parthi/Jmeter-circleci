@@ -23,7 +23,7 @@ jobs:
           command: mkdir results
       - run:
           name: "Run tests"
-          command: "jmeter -n -t sampleTest.jmx -l results/runResults.csv -e -o results"
+          command: "jmeter sampleTest.jmx -l results/runResults.csv -e -o results"
       - store_artifacts:
           path: results
   notify:
