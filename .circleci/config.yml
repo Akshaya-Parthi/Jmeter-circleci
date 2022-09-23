@@ -35,29 +35,78 @@ jobs:
     steps:
       - slack/notify:
           channel: devops
+          custom: |
+            {
+                        	"text": "CircleCI job failed.",
+                        	"blocks": [
+                        		{
+                        			"type": "header",
+                        			"text": {
+                        				"type": "plain_text",
+                        				"text": "Job Failed. :red_circle:",
+                        				"emoji": true
+                        			}
+                        		},
+                        		{
+                        			"type": "section",
+                        			"fields": [
+                        				{
+                        					"type": "mrkdwn",
+                        					"text": "*Job*: ${CIRCLE_JOB}"
+                        				}
+                        			]
+                        		},
+                        		{
+                        			"type": "section",
+                        			"fields": [
+                        				{
+                        					"type": "mrkdwn",
+                        					"text": "*Project*: $CIRCLE_PROJECT_REPONAME"
+                        				},
+                        				{
+                        					"type": "mrkdwn",
+                        					"text": "*Branch*: $CIRCLE_BRANCH"
+                        				},
+                        				{
+                        					"type": "mrkdwn",
+                        					"text": "*Author*: $CIRCLE_USERNAME"
+                        				}
+                        			],
+                        			"accessory": {
+                        				"type": "image",
+                        				"image_url": "https://assets.brandfolder.com/otz5mn-bw4j2w-6jzqo8/original/circle-logo-badge-black.png",
+                        				"alt_text": "CircleCI logo"
+                        			}
+                        		},
+                        		{
+                        			"type": "section",
+                        			"fields": [
+                        				{
+                        					"type": "mrkdwn",
+                        					"text": "*Mentions*: $SLACK_PARAM_MENTIONS"
+                        				}
+                        			]
+                        		},
+                        		{
+                        			"type": "actions",
+                        			"elements": [
+                        				{
+                        					"type": "button",
+                        					"text": {
+                        						"type": "plain_text",
+                        						"text": "View Job"
+                        					},
+                        					"url": "${CIRCLE_BUILD_URL}"
+                        				}
+                        			]
+                        		}
+                        	]
+                        }
           event: fail
-          template: basic_fail_1
-      - slack/notify:
-          channel: devops
-          event: pass
-          template: success_tagged_deploy_1
+          
       - slack/notify:
           channel: devops
           custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "Branch - main",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
             {
                         	"text": "CircleCI job succeeded!",
                         	"blocks": [
@@ -128,55 +177,7 @@ jobs:
                         		}
                         	]
                         }
-                    success_tagged_deploy_1: |
-                        {
-                        	"text": "CircleCI job succeeded!",
-                        	"blocks": [
-                        		{
-                        			"type": "header",
-                        			"text": {
-                        				"type": "plain_text",
-                        				"text": "Deployment Successful! :tada:",
-                        				"emoji": true
-                        			}
-                        		},
-                        		{
-                        			"type": "section",
-                        			"fields": [
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Project*: $CIRCLE_PROJECT_REPONAME"
-                        				},
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*When*: $(date +'%m/%d/%Y %T')"
-                        				},
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Tag*: $CIRCLE_TAG"
-                        				}
-                        			],
-                        			"accessory": {
-                        				"type": "image",
-                        				"image_url": "https://assets.brandfolder.com/otz5mn-bw4j2w-6jzqo8/original/circle-logo-badge-black.png",
-                        				"alt_text": "CircleCI logo"
-                        			}
-                        		},
-                        		{
-                        			"type": "actions",
-                        			"elements": [
-                        				{
-                        					"type": "button",
-                        					"text": {
-                        						"type": "plain_text",
-                        						"text": "View Job"
-                        					},
-                        					"url": "${CIRCLE_BUILD_URL}"
-                        				}
-                        			]
-                        		}
-                        	]
-                        }
+
           event: pass
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
