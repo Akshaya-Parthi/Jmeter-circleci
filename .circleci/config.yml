@@ -41,6 +41,22 @@ jobs:
           channel: devops
           event: pass
           template: success_tagged_deploy_1
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "Branch - main",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -52,3 +68,4 @@ workflows:
     jobs:
       - notify:
           context: slack-secrets
+
