@@ -34,14 +34,6 @@ jobs:
           password: $DOCKER_PASSWORD  # context / project UI env-var reference
     steps:
       - slack/notify:
-          channel: devops
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-          channel: devops
-          event: pass
-          template: success_tagged_deploy_1
-      - slack/notify:
           custom: |
             {
               "blocks": [
@@ -58,7 +50,14 @@ jobs:
               ]
             }
           event: always
-
+      - slack/notify:
+          channel: devops
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          channel: devops
+          event: pass
+          template: success_tagged_deploy_1
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
