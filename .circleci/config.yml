@@ -1,8 +1,6 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-orbs:
-  slack: circleci/slack@4.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -10,11 +8,11 @@ jobs:
   circleci-jmeter:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-  docker:
-  - image: akshayaclops/jmeter:latest
-    auth:
-      username: $DOCKER_USERNAME
-      password: $DOCKER_PASSWORD
+    docker:
+      - image: akshayaclops/jmeter:latest
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -29,30 +27,8 @@ jobs:
           path: results
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-    notify:
-      docker:
-        - image: 'cimg/base:stable'
-    steps:
-      - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always
 workflows:
   circleci-jmeter-workflow:
     jobs:
       - circleci-jmeter
-      - notify:
-          context: slack-secrets
+
