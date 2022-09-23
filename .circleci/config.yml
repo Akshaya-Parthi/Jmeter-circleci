@@ -33,14 +33,15 @@ jobs:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD  # context / project UI env-var reference
     steps:
-- slack/notify:
-	  event: fail
-	  template: basic_fail_1
-- slack/notify:
-	  event: pass
-	  template: success_tagged_deploy_1
-    docker:
-      - image: 'cimg/base:stable'
+      - slack/notify:
+          channel: devops
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          channel: devops
+          event: pass
+          template: success_tagged_deploy_1
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
