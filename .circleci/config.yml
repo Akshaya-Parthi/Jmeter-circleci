@@ -32,6 +32,8 @@ jobs:
     steps:
       - slack/notify:
           channel: devops
+          event: pass
+          template: success_tagged_deploy_1
           custom: |
             {
               "blocks": [
@@ -40,7 +42,7 @@ jobs:
                   "fields": [
                     {
                       "type": "plain_text",
-                      "text": "*This is a text notification*",
+                      "text": "*Build success*",
                       "emoji": true
                     }
                   ]
