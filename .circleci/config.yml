@@ -32,23 +32,9 @@ jobs:
     steps:
       - slack/notify:
           channel: devops
+          event: Pass
           template: success_tagged_deploy_1
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*Build success*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
