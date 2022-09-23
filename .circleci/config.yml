@@ -40,9 +40,8 @@ jobs:
                   "type": "section",
                   "fields": [
                     {
-                      "type": "plain_text","attachment",
+                      "type": "plain_text",
                       "text": "Build success",
-                      "attachment":"results/index.html"
                       "emoji": true
                     }
                   ]
