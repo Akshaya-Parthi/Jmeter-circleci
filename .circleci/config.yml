@@ -39,6 +39,7 @@ jobs:
               "blocks": [
                 {
                   "type": "section",
+                  "channel": devops
                   "fields": [
                     {
                       "type": "plain_text",
