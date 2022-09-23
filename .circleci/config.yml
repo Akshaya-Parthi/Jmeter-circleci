@@ -40,7 +40,7 @@ jobs:
       - slack/notify:
           channel: devops
           event: pass
-          template: basic_success_1
+          template: success_tagged_deploy_1
       - slack/notify:
           channel: devops
           custom: |
