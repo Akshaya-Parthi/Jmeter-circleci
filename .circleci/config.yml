@@ -32,7 +32,6 @@ jobs:
     steps:
       - slack/notify:
           channel: devops
-          event: pass
           template: success_tagged_deploy_1
           custom: |
             {
