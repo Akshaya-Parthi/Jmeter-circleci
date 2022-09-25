@@ -3,6 +3,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@4.1
+  email: cinotify/email@1.2.3
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -26,6 +27,25 @@ jobs:
           command: "jmeter -n -t sampleTest.jmx -l results/runResults.csv -e -o results"
       - store_artifacts:
           path: results
+   email/send:
+         description: |
+             Send an email notification.
+         executor: default
+         parameters:
+             body:
+                 description: Email body
+                 type: string
+             subject:
+                 description: Email subject
+                 type: string
+             to:
+                 description: Email recipient
+                 type: string
+         steps:
+             - send:
+                 body: zap integration with circleci
+                 subject: mail notification
+                 to: akshaya.p@cloudifyops.com
   notify:
     docker:
       - image: 'cimg/base:stable'
@@ -188,4 +208,11 @@ workflows:
     jobs:
       - notify:
           context: slack-secrets
+  example-workflow:
+    jobs:
+      - email/send:
+          body: Configure this notification at https://www.cinotify.cc/
+          subject: CircleCI job started
+          to: akshaya.p@cloudifyops.com
+
 
