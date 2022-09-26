@@ -35,7 +35,7 @@ jobs:
     steps:
       - slack/notify:
           channel: devops
-          event: fail
+          event: pass
           custom: |
             {
                         	"text": "CircleCI job failed.",
@@ -106,7 +106,7 @@ jobs:
 
       - slack/notify:
           channel: devops
-          event: pass
+          event: fail
           custom: |
             {
                         	"text": "CircleCI job succeeded!",
