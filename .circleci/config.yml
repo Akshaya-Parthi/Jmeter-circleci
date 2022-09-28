@@ -6,7 +6,7 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  circleci-jmeter:
+  circleci-jmeter-test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -183,7 +183,7 @@ jobs:
 workflows:
   circleci-jmeter-workflow:
     jobs:
-      - circleci-jmeter
+      - circleci-jmeter-test
   send-notification:
     jobs:
       - notify:
